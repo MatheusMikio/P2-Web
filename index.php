@@ -42,6 +42,23 @@
                 <input type="text" placeholder="Pesquisar">
             </div>
         </div>
+        <div class="card-container">
+            <h3 class="main-title">Today's data</h3>
+            <div class="card-warapper">
+                <div class="payment-card">
+                    <div class="card-header">
+                        <div class="ammount">
+                            <span class="title">
+                                Payment ammount
+                            </span>
+                            <span class="amount-value">$500.00</span>
+                        </div>
+                        <i class="fas fa-dollar-sign icon"></i>
+                    </div>
+                    <span class="card-detail">**** **** **** 3210</span>
+                </div>                
+            </div>
+        </div>
     </div>
 </body>
 </html>

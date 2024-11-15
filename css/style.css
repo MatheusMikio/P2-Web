@@ -102,3 +102,19 @@ body{
     background: transparent;
     padding: 10px;
 }
+
+.searh i{
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.5s ease-out;
+}
+
+.search i:hover{
+    transform: scale(1.2);
+}
+
+.card-container{
+    background: #fff;
+    border-radius: 10px;
+    padding: 15px;
+}
