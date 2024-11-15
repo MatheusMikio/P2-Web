@@ -8,6 +8,7 @@ $sql = "SELECT sum(valor) as valor FROM dispesas WHERE tipo = '0' ";
 $sql2= "SELECT sum(valor) as valor FROM dispesas WHERE tipo = '1' ";
 $query = mysqli_query($conn, $sql);
 $query2 = mysqli_query($conn,$sql2);
+
 if (mysqli_num_rows($query) > 0) {
     $mesesEntrada = mysqli_fetch_array($query);
 }
