@@ -1,3 +1,24 @@
+<?php
+session_start();
+require_once('back/conexao.php');
+
+$mesesEntrada= [];
+$mesesSaida = [];
+$sql = "SELECT sum(valor) as valor FROM dispesas WHERE tipo = '0' ";
+$sql2= "SELECT sum(valor) as valor FROM dispesas WHERE tipo = '1' ";
+$query = mysqli_query($conn, $sql);
+$query2 = mysqli_query($conn,$sql2);
+
+if (mysqli_num_rows($query) > 0) {
+    $mesesEntrada = mysqli_fetch_array($query);
+}
+if(mysqli_num_rows($query2)>0)
+{
+    $mesesSaida = mysqli_fetch_array($query2);
+}
+// precisa criar o banco para rodar agr felicidades !!
+?>
+
 <!DOCTYPE html>
 <html lang="pt=-br">
 <head>
