@@ -115,6 +115,151 @@ body{
 
 .card-container{
     background: #fff;
+    padding: 2rem;
     border-radius: 10px;
+}
+
+.card-wrapper{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.main-title{
+    color: rgba(113, 99, 186, 255);
+    padding-bottom: 10px;
+    font-size: 15px;
+}
+
+.payment-card{
+    background:  rgb(229, 223, 223);
+    border-radius: 10px;
+    padding: 1.2rem;
+    width: 290px;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.5s ease-in-out;
+    margin-right: 94.7px;
+}
+
+.payment-card:hover{
+    transform: translateY(-5px);
+}
+
+.card-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.amount{
+    display: flex;
+    flex-direction: column;
+}
+
+.title{
+    margin-top: -15px;
+    font-size: 15px;
+    font-weight: 400;
+}
+
+.amount-value{
+    margin-top: 20px;
+    font-size: 24px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 600;
+}
+
+.icon-g{
+    margin-top: 25px;
+    color: #000702;
+    padding: 0.7rem;
+    height: 60px;
+    width: 60px;
+    text-align: center;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    background: rgb(102, 204, 102);
+}
+
+.icon-r{
+    margin-top: 25px;
+    color: #000000;
+    padding: 0.9rem;
+    height: 60px;
+    width: 60px;
+    text-align: center;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    background: rgb(223, 73, 63);
+}
+.icon-b{
+    margin-top: 25px;
+    color: #000000;
+    padding: 0.7rem;
+    height: 60px;
+    width: 60px;
+    text-align: center;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    background: rgb(141 186 207)
+}
+
+.light-red{
+    background: rgb(251, 233, 233);
+}
+.light-green{
+    background: rgb(235, 254, 235);
+}
+.light-blue{
+    background: rgb(236, 236, 254);
+}
+
+.table-wrapper{
+    background: #fff; 
+    margin-top: 1rem;
+    border-radius: 10px;
+    padding: 2rem; 
+}
+
+.table-container{
+    width: 100%;
+}
+
+thead{
+    background: rgba(113, 99, 186, 255);
+    color: #fff;
+}
+
+table{
+    width: 100%;
+    border-collapse: collapse;
+}
+th{
     padding: 15px;
+}
+
+tbody{
+    background: #f2f2f2;
+}
+td{
+    padding: 15px;
+    font-size: 14px;
+    color: #333;
+}
+tr:nth-child(even){
+    background-color: #fff;
+}
+
+tfoot{
+    background: rgba(113, 99, 186, 255);
+    font-weight: bold;
+    color: #fff;
+}
+tfoot td{
+    padding: 15px;
+    color: #fff;
 }
