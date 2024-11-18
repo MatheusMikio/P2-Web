@@ -4,8 +4,8 @@ require_once('back/conexao.php');
 
 $mesesEntrada= [];
 $mesesSaida = [];
-$sql = "SELECT sum(valor) as valor FROM dispesas WHERE tipo = '0' ";
-$sql2= "SELECT sum(valor) as valor FROM dispesas WHERE tipo = '1' ";
+$sql = "SELECT sum(valor) as valor FROM dispesas WHERE fluxo = '0' ";
+$sql2= "SELECT sum(valor) as valor FROM dispesas WHERE fluxo = '1' ";
 $query = mysqli_query($conn, $sql);
 $query2 = mysqli_query($conn,$sql2);
 

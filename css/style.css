@@ -117,6 +117,11 @@ body{
     background: #fff;
     padding: 2rem;
     border-radius: 10px;
+}
+.card-container-g{
+    background: #fff;
+    padding: 2rem;
+    border-radius: 10px;
     height: 390px;
 }
 
@@ -142,7 +147,7 @@ body{
     flex-direction: column;
     justify-content: space-between;
     transition: all 0.5s ease-in-out;
-    margin-right: 94.7px;
+    margin-right: 90px;
 }
 
 .payment-card:hover{
@@ -264,11 +269,12 @@ tfoot td{
     padding: 15px;
     color: #fff;
 }
+
 label{
     color: rgba(113, 99, 186, 255);
 }
-button{
-    padding: 2.5px 10px;
+.button{
+    padding: 5px 10px;
     float: right;
     cursor: pointer;
     background: rgba(113, 99, 186, 255);
@@ -277,6 +283,11 @@ button{
     font-weight: bolder;
     border-radius: 5px;
     outline: none;
+}
+button:hover{
+    
+    background: #727cf5;
+    color: black;
 }
 input[type=number]::-webkit-inner-spin-button { 
 -webkit-appearance: none;
