@@ -16,7 +16,7 @@ if(mysqli_num_rows($query2)>0)
 {
     $mesesSaida = mysqli_fetch_array($query2);
 }
-// precisa criar o banco para rodar agr felicidades !!
+//precisa criar o banco para rodar agr felicidades !!
 ?>
 
 <!DOCTYPE html>

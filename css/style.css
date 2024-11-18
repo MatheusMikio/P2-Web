@@ -48,7 +48,7 @@ body{
     transition: all 0.5s ease-in-out;
 }
 .menu li:hover, .active{
-    background: #e0e0e058;
+    background: #fcfcfc58;
 }
 
 .menu a{
@@ -117,6 +117,7 @@ body{
     background: #fff;
     padding: 2rem;
     border-radius: 10px;
+    height: 390px;
 }
 
 .card-wrapper{
@@ -262,4 +263,21 @@ tfoot{
 tfoot td{
     padding: 15px;
     color: #fff;
+}
+label{
+    color: rgba(113, 99, 186, 255);
+}
+button{
+    padding: 2.5px 10px;
+    float: right;
+    cursor: pointer;
+    background: rgba(113, 99, 186, 255);
+    border: none;
+    color: #fff;
+    font-weight: bolder;
+    border-radius: 5px;
+    outline: none;
+}
+input[type=number]::-webkit-inner-spin-button { 
+-webkit-appearance: none;
 }
