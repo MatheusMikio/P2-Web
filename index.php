@@ -2,9 +2,10 @@
 session_start();
 require_once('back/conexao.php');
 
-function getSaida()
+function getValor($idmes,$tipo)
 {
-    $sqlSaidames = "SELECT sum(valor) as valor from despesas where idMes = 1";
+    include('back/conexao.php');
+    $sqlSaidames = "SELECT sum(valor) as valor from despesas where idMes = $idmes and tipo = $tipo";
     $querySaidames = mysqli_query($conn,$sqlSaidames);
     if (mysqli_num_rows($querySaidames)>0)
     {
@@ -13,8 +14,7 @@ function getSaida()
     }
 }
 
-$mesesEntrada= [];
-$mesesSaida = [];
+
 $sql = "SELECT sum(valor) as valor FROM despesas WHERE tipo = '0' ";
 $sql2= "SELECT sum(valor) as valor FROM despesas WHERE tipo = '1' ";
 $sqlMes = "SELECT * FROM meses m JOIN despesas d on d.idMes = m.idMes;";
@@ -132,19 +132,23 @@ if(mysqli_num_rows($query2)>0)
                         </tr>
                     </thead>
                     <?php foreach ($querysoMes as $mes):?>
+                        <?php 
+                            $saidavalor = getValor($mes['idmes'],0);
+                            $entradaValor = getValor($mes['idmes'],1);
+
+                            ?>
                     <tbody class="grid text-center">
                         <td><?=$mes['mes']?></td>
                     
-                        <td>R$ 1000</td>
-                        <td><?= getSaida()
-
-                        ?></td>
-                        <td>R$ 500</td>
+                        <td><?=number_format($entradaValor[0],2,',','.')?></td>
+                        <td><?=number_format($saidavalor[0],2,',','.')?></td>
+                        <td><?=number_format($entradaValor[0]-$saidavalor[0],2,',','.')?></td>
                     </tbody>
-                    <tfoot class="text-end">
-                        <td colspan="7">Total: R$500</td>
-                    </tfoot>
                     <?php endforeach;?>
+                    <tfoot class="text-end">
+                        <td colspan="7"><?=$mesesEntrada['valor'] - $mesesSaida['valor']?></td>
+                    </tfoot>
+                    
                 </table>
             </div>
         </div>
