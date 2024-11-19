@@ -65,7 +65,7 @@
                         <label for="valor">Valor</label>
                         <input type="number" name="valor" id="valor" class="form-control" placeholder="R$500.00" step=".01">
                     </div>
-
+                    
                     <div class="mb-3">
                         <button type="submit" name="criar_despesa" class="button">Criar</button>
                     </div>

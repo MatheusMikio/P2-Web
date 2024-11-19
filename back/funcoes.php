@@ -37,7 +37,6 @@ function getMeses()
     return $querysoMes = mysqli_query($conn,$sqlsoMes);
 }
 
-
 if(isset($_POST['criar_despesa']))
 {
     $valor = $_POST['valor'];
