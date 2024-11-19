@@ -1,3 +1,8 @@
+<?php
+session_start();
+require_once('back/funcoes.php');
+$meses = getMeses();
+?>
 <!DOCTYPE html>
 <html lang="pt=-br">
 <head>
@@ -42,16 +47,18 @@
             <h3 class="main-title">Meses do ano <select name="ano" id="ano">
                 <option value="">2024</option>
             </select></h3>
-            <div class="card-wrapper">
-                <a href="mes.php">
-                    <div class="mes-card">
-                        <div class="card-header">
-                            <div class="amount">
-                                <span class="mes">Janeiro</span>
+            <?php foreach ($meses as $mes):?>
+                <div class="card-wrapper">
+                    <a href="mes.php">
+                        <div class="mes-card">
+                            <div class="card-header">
+                                <div class="amount">
+                                    <span class="mes"><?=$mes['mes']?></span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </a>
-            </div>            
+                    </a>
+                </div>    
+            <?php endforeach;?>        
         </div>
     </div>

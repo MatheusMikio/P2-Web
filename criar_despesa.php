@@ -45,7 +45,7 @@
         </div>
         <div class="card-body">
             <div class="card-container-g">
-                <form action="acoesToDo.php" method="POST">
+                <form action="back/funcoes.php" method="POST">
                     <div class="mb-3">
                         <label for="data" class="color">Data</label>
                         <input type="datetime-local" name="data" id="data" class="form-control">

@@ -2,7 +2,7 @@
 session_start();
 require_once('back/conexao.php');
 require_once('back/funcoes.php');
-$meses = getMes();
+$meses = getMeses();
 
 //precisa criar o banco para rodar agr felicidades !!
 ?>
