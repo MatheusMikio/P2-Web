@@ -20,7 +20,7 @@ if(mysqli_num_rows($query2)>0)
 ?>
 
 <!DOCTYPE html>
-<html lang="pt=-br">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -40,12 +40,7 @@ if(mysqli_num_rows($query2)>0)
                     <span>Dashboard</span>
                 </a>
             </li>
-            <li>
-                <a href="criar_despesa.php">
-                <i class="bi bi-calendar-plus"></i>
-                    <span>Criar despesa</span>
-                </a>
-            </li>
+
             <li>
                 <a href="visualizar.php">
                 <i class="bi bi-calendar3"></i>
@@ -98,7 +93,7 @@ if(mysqli_num_rows($query2)>0)
                             </span>
                             <span class="amount-value">$500.00</span>
                         </div>
-                        <i class="bi bi-caret-right-fill icon-b"></i>
+                        <i class="bi bi-currency-dollar icon-b"></i>
                     </div>
                 </div>                
             </div>

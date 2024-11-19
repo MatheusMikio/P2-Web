@@ -13,18 +13,13 @@
     <div class="sidebar">
         <div class="logo"></div>
         <ul class="menu">
-            <li>
+            <li >
                 <a href="index.php" >
                 <i class="bi bi-speedometer"></i>
                     <span>Dashboard</span>
                 </a>
             </li>
-            <li>
-                <a href="criar_despesa.php">
-                <i class="bi bi-calendar-plus"></i>
-                    <span>Criar despesa</span>
-                </a>
-            </li>
+
             <li class="active">
                 <a href="visualizar.php">
                 <i class="bi bi-calendar3"></i>
@@ -39,6 +34,24 @@
                 <span>Meses</span>
                 <h2>Sistema de Controle de Finanças</h2>
             </div>
+            <div>
+                <a href="criar_despesa.php"name="criar_despesa" class="button-button">Criar</a>
+            </div>
         </div>
-    
+        <div class="card-container">
+            <h3 class="main-title">Meses do ano <select name="ano" id="ano">
+                <option value="">2024</option>
+            </select></h3>
+            <div class="card-wrapper">
+                <a href="mes.php">
+                    <div class="mes-card">
+                        <div class="card-header">
+                            <div class="amount">
+                                <span class="mes">Janeiro</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>            
+        </div>
     </div>

@@ -292,3 +292,50 @@ button:hover{
 input[type=number]::-webkit-inner-spin-button { 
 -webkit-appearance: none;
 }
+
+.mes{
+    font-size: 24px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 600;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    position: absolute;
+}
+
+.mes-card{
+    background:  #727cf5;
+    border-radius: 10px;
+    padding: 1.2rem;
+    width: 290px;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.5s ease-in-out;
+    position: relative;
+    color: white;
+}
+
+select{
+    border-radius: 5px;
+}
+
+.button-button{
+    padding: 15px 15px;
+    float: right;
+    cursor: pointer;
+    background: rgba(113, 99, 186, 255);
+    border: none;
+    color: #fff;
+    font-weight: bolder;
+    border-radius: 10px;
+    outline: none;
+    font-size: 20px;
+    font-weight: 800;
+    text-decoration: none;
+}
+.button-button:hover{
+    background: #727cf5;
+    color: black;
+}
