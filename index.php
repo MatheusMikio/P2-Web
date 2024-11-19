@@ -1,36 +1,9 @@
 <?php
 session_start();
 require_once('back/conexao.php');
+require_once('back/funcoes.php');
+$meses = getMes();
 
-function getValor($idmes,$tipo)
-{
-    include('back/conexao.php');
-    $sqlSaidames = "SELECT sum(valor) as valor from despesas where idMes = $idmes and tipo = $tipo";
-    $querySaidames = mysqli_query($conn,$sqlSaidames);
-    if (mysqli_num_rows($querySaidames)>0)
-    {
-        $valor = mysqli_fetch_array($querySaidames);
-        return $valor;
-    }
-}
-
-
-$sql = "SELECT sum(valor) as valor FROM despesas WHERE tipo = '0' ";
-$sql2= "SELECT sum(valor) as valor FROM despesas WHERE tipo = '1' ";
-$sqlMes = "SELECT * FROM meses m JOIN despesas d on d.idMes = m.idMes;";
-$sqlsoMes = "SELECT idmes,mes from meses";
-$query = mysqli_query($conn, $sql);
-$query2 = mysqli_query($conn,$sql2);
-$queryMes = mysqli_query($conn,$sqlMes);
-$querysoMes = mysqli_query($conn,$sqlsoMes);
-
-if (mysqli_num_rows($query) > 0) {
-    $mesesSaida = mysqli_fetch_array($query);
-}
-if(mysqli_num_rows($query2)>0)
-{
-    $mesesEntrada = mysqli_fetch_array($query2);
-}
 //precisa criar o banco para rodar agr felicidades !!
 ?>
 
@@ -84,7 +57,7 @@ if(mysqli_num_rows($query2)>0)
                             <span class="title">
                                 Entrada Total:
                             </span>
-                            <span class="amount-value"><?=$mesesEntrada['valor'] ??0 ?></span>
+                            <span class="amount-value"><?=getValor(1) ??0 ?></span>
                         </div>
                         <i class="bi bi-caret-up-fill icon-g"></i>
                     </div>
@@ -95,7 +68,7 @@ if(mysqli_num_rows($query2)>0)
                             <span class="title">
                                 Saida Total:
                             </span>
-                            <span class="amount-value"><?=$mesesSaida['valor'] ??0 ?></span>
+                            <span class="amount-value"><?=getValor(0) ??0 ?></span>
                         </div>
                         <i class="bi bi-caret-down-fill icon-r"></i>
                     </div>
@@ -106,7 +79,7 @@ if(mysqli_num_rows($query2)>0)
                             <span class="title">
                                 Restante:
                             </span>
-                            <span class="amount-value"><?=$mesesEntrada['valor'] - $mesesSaida['valor']?></span>
+                            <span class="amount-value"><?=getValor(1)- getValor(0)?></span>
                         </div>
                         <i class="bi bi-currency-dollar icon-b"></i>
                     </div>
@@ -125,22 +98,17 @@ if(mysqli_num_rows($query2)>0)
                             <th>Total</th>
                         </tr>
                     </thead>
-                    <?php foreach ($querysoMes as $mes):?>
-                        <?php 
-                            $saidavalor = getValor($mes['idmes'],0);
-                            $entradaValor = getValor($mes['idmes'],1);
-
-                            ?>
+                    <?php foreach ($meses as $mes):?>
                     <tbody class="grid text-center">
                         <td><?=$mes['mes']?></td>
                     
-                        <td><?=number_format($entradaValor[0],2,',','.')?></td>
-                        <td><?=number_format($saidavalor[0],2,',','.')?></td>
-                        <td><?=number_format($entradaValor[0]-$saidavalor[0],2,',','.')?></td>
+                        <td><?=number_format(getValorMes($mes['idmes'],1),2,',','.')?></td>
+                        <td><?=number_format(getValorMes($mes['idmes'],0),2,',','.')?></td>
+                        <td><?=number_format(getValorMes($mes['idmes'],1)-getValorMes($mes['idmes'],0),2,',','.')?></td>
                     </tbody>
                     <?php endforeach;?>
                     <tfoot class="text-end">
-                        <td colspan="7"><?=$mesesEntrada['valor'] - $mesesSaida['valor']?></td>
+                        <td colspan="7"><?=getValor(1)- getValor(0)?></td>
                     </tfoot>
                     
                 </table>
