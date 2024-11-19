@@ -2,25 +2,41 @@
 session_start();
 require_once('back/conexao.php');
 
+function getSaida()
+{
+    $sqlSaidames = "SELECT sum(valor) as valor from despesas where idMes = 1";
+    $querySaidames = mysqli_query($conn,$sqlSaidames);
+    if (mysqli_num_rows($querySaidames)>0)
+    {
+        $valor = mysqli_fetch_array($querySaidames);
+        return $valor;
+    }
+}
+
 $mesesEntrada= [];
 $mesesSaida = [];
-$sql = "SELECT sum(valor) as valor FROM dispesas WHERE fluxo = '0' ";
-$sql2= "SELECT sum(valor) as valor FROM dispesas WHERE fluxo = '1' ";
+$sql = "SELECT sum(valor) as valor FROM despesas WHERE tipo = '0' ";
+$sql2= "SELECT sum(valor) as valor FROM despesas WHERE tipo = '1' ";
+$sqlMes = "SELECT * FROM meses m JOIN despesas d on d.idMes = m.idMes;";
+$sqlsoMes = "SELECT idmes,mes from meses";
 $query = mysqli_query($conn, $sql);
 $query2 = mysqli_query($conn,$sql2);
+$queryMes = mysqli_query($conn,$sqlMes);
+$querysoMes = mysqli_query($conn,$sqlsoMes);
 
 if (mysqli_num_rows($query) > 0) {
-    $mesesEntrada = mysqli_fetch_array($query);
+    $mesesSaida = mysqli_fetch_array($query);
 }
 if(mysqli_num_rows($query2)>0)
 {
-    $mesesSaida = mysqli_fetch_array($query2);
+    $mesesEntrada = mysqli_fetch_array($query2);
 }
 //precisa criar o banco para rodar agr felicidades !!
 ?>
 
 <!DOCTYPE html>
-<html lang="pt-br">
+
+<html lang="pt=-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -40,7 +56,12 @@ if(mysqli_num_rows($query2)>0)
                     <span>Dashboard</span>
                 </a>
             </li>
-
+            <li>
+                <a href="criar_despesa.php">
+                <i class="bi bi-calendar-plus"></i>
+                    <span>Criar despesa</span>
+                </a>
+            </li>
             <li>
                 <a href="visualizar.php">
                 <i class="bi bi-calendar3"></i>
@@ -69,7 +90,7 @@ if(mysqli_num_rows($query2)>0)
                             <span class="title">
                                 Entrada Total:
                             </span>
-                            <span class="amount-value">$500.00</span>
+                            <span class="amount-value"><?=$mesesEntrada['valor'] ??0 ?></span>
                         </div>
                         <i class="bi bi-caret-up-fill icon-g"></i>
                     </div>
@@ -80,7 +101,7 @@ if(mysqli_num_rows($query2)>0)
                             <span class="title">
                                 Saida Total:
                             </span>
-                            <span class="amount-value">$500.00</span>
+                            <span class="amount-value"><?=$mesesSaida['valor'] ??0 ?></span>
                         </div>
                         <i class="bi bi-caret-down-fill icon-r"></i>
                     </div>
@@ -91,9 +112,9 @@ if(mysqli_num_rows($query2)>0)
                             <span class="title">
                                 Restante:
                             </span>
-                            <span class="amount-value">$500.00</span>
+                            <span class="amount-value"><?=$mesesEntrada['valor'] - $mesesSaida['valor']?></span>
                         </div>
-                        <i class="bi bi-currency-dollar icon-b"></i>
+                        <i class="bi bi-caret-right-fill icon-b"></i>
                     </div>
                 </div>                
             </div>
@@ -110,15 +131,20 @@ if(mysqli_num_rows($query2)>0)
                             <th>Total</th>
                         </tr>
                     </thead>
+                    <?php foreach ($querysoMes as $mes):?>
                     <tbody class="grid text-center">
-                        <td>Janeiro</td>
+                        <td><?=$mes['mes']?></td>
+                    
                         <td>R$ 1000</td>
-                        <td>R$ 500</td>
+                        <td><?= getSaida()
+
+                        ?></td>
                         <td>R$ 500</td>
                     </tbody>
                     <tfoot class="text-end">
                         <td colspan="7">Total: R$500</td>
                     </tfoot>
+                    <?php endforeach;?>
                 </table>
             </div>
         </div>
