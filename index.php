@@ -57,7 +57,7 @@ $meses = getMeses();
                             <span class="title">
                                 Entrada Total:
                             </span>
-                            <span class="amount-value"><?=getValor(1) ??0 ?></span>
+                            <span class="amount-value"><?=number_format(getValor(1),2,',','.') ?? 0 ?></span>
                         </div>
                         <i class="bi bi-caret-up-fill icon-g"></i>
                     </div>
@@ -68,7 +68,7 @@ $meses = getMeses();
                             <span class="title">
                                 Saida Total:
                             </span>
-                            <span class="amount-value"><?=getValor(0) ??0 ?></span>
+                            <span class="amount-value"><?=number_format(getValor(0),2,',','.') ?? 0 ?></span>
                         </div>
                         <i class="bi bi-caret-down-fill icon-r"></i>
                     </div>
@@ -79,7 +79,7 @@ $meses = getMeses();
                             <span class="title">
                                 Restante:
                             </span>
-                            <span class="amount-value"><?=getValor(1)- getValor(0)?></span>
+                            <span class="amount-value"><?=number_format(getValor(1)- getValor(0),2,',','.') ?? 0 ?></span>
                         </div>
                         <i class="bi bi-currency-dollar icon-b"></i>
                     </div>
@@ -108,7 +108,7 @@ $meses = getMeses();
                     </tbody>
                     <?php endforeach;?>
                     <tfoot class="text-end">
-                        <td colspan="7"><?=getValor(1)- getValor(0)?></td>
+                        <td colspan="7">R$ <?=getValor(1) - getValor(0)?></td>
                     </tfoot>
                 </table>
             </div>

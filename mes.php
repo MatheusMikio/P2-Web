@@ -1,8 +1,3 @@
-<?php
-session_start();
-require_once('back/funcoes.php');
-$meses = getMeses();
-?>
 <!DOCTYPE html>
 <html lang="pt=-br">
 <head>
@@ -43,23 +38,28 @@ $meses = getMeses();
                 <a href="criar_despesa.php"name="criar_despesa" class="button-button">Criar</a>
             </div>
         </div>
-        <div class="card-container">
-            <h3 class="main-title">Meses do ano <select name="ano" id="ano">
-                <option value="">2024</option>
-            </select></h3>
-            <?php foreach ($meses as $mes):?>
-                <div class="card-wrapper-m">
-                    <a href="mes.php">
-                        <div class="mes-card">
-                            <div class="card-header">
-                                <div class="amount">
-                                    <span class="mes"><?=$mes['mes']?></span>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>    
-                
-            <?php endforeach;?>        
+        <div class="table-wrapper">
+            <h3 class="main-title">Mes de {DALE}</h3>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr class="grid text-center">
+                            <th>Data</th>
+                            <th>Tipo</th>
+                            <th>Categoria</th>
+                            <th>Valor</th>
+                        </tr>
+                    </thead>
+                    <tbody class="grid text-center">
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tbody>
+                    <tfoot class="text-end">
+                        <td colspan="7">Total R$</td>
+                    </tfoot>
+                </table>
+            </div>
         </div>
     </div>

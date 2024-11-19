@@ -25,6 +25,7 @@ function getValor($tipo)
 
 function getMes($mes,$ano)
 {
+    include('back/conexao.php');
     $sqlMes = "SELECT * FROM meses WHERE mes = $mes and ano = $ano";
     $queryMes = mysqli_query($conn,$sql);
     return  $queryMes;

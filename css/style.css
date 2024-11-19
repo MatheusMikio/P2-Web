@@ -127,8 +127,12 @@ body{
 
 .card-wrapper{
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     gap: 1rem;
+}
+
+.card-wrapper-m{
+    display: inline-block;
 }
 
 .main-title{
