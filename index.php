@@ -110,7 +110,6 @@ $meses = getMeses();
                     <tfoot class="text-end">
                         <td colspan="7"><?=getValor(1)- getValor(0)?></td>
                     </tfoot>
-                    
                 </table>
             </div>
         </div>
