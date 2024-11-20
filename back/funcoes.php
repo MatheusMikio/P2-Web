@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once 'conexao.php';
+
 function numfmt($num){
     return number_format($num,2,",",".");
 }
@@ -58,6 +59,17 @@ if (isset($_POST['criar_despesa'])){
     $sql = "INSERT INTO despesas (data_hora,tipo,descricao,valor) values ('$data','$tipo','$descricao','$valor')";
 
     mysqli_query($conn,$sql);
+
+    if (mysqli_affected_rows($conn) >= 0){
+        $_SESSION['message'] = "Despesa Criada!";
+        $_SESSION['type'] = 'success';
+    }
+    else{
+        $_SESSION['message'] = "A despesa não pode ser criada!";
+        $_SESSION['type'] = 'error';
+    }
+    header('Location: mes.php');
+    exit();
 }
 
 
@@ -72,7 +84,17 @@ if (isset($_POST['editar_despesa'])){
     $sql = "UPDATE despesas set data_hora = '{$data}', tipo = '{$tipo}', descricao = '{$categoria}', valor = '{$valor}' WHERE idDespesas = '{$idDespesas}'";
     mysqli_query($conn,$sql);
 
+    if (mysqli_affected_rows($conn) >= 0){
+        $_SESSION['message'] = "Despesa atualizada!";
+        $_SESSION['type'] = 'success';
+    }
+    else{
+        $_SESSION['message'] = "A despesa não pode ser editada!";
+        $_SESSION['type'] = 'error';
+    }
+
     header('Location: ../mes.php');
+    exit();
 }
 
 //TEM QUE TESTAR ESSA MERDA
@@ -81,6 +103,17 @@ if (isset($_POST['deletar_despesa'])){
     $sql = "DELETE FROM despesas WHERE idDespesas = '{$idDespesa}'";
 
     mysqli_query($conn,$sql);
+
+    if (mysqli_affected_rows($conn) >= 0){
+        $_SESSION['message'] = "Despesa excluida!";
+        $_SESSION['type'] = 'success';
+    }
+    else{
+        $_SESSION['message'] = "A despesa não pode ser excluida!";
+        $_SESSION['type'] = 'error';
+    }
+    
     header('Location: ../mes.php');
+    exit();
 }
 ?>
