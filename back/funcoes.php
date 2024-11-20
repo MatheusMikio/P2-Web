@@ -49,30 +49,16 @@ function getMeses()
     return $querysoMes = mysqli_query($conn,$sqlsoMes);
 }
 
-// if(isset($_POST['criar_despesa']))
-// {
-//     $valor = $_POST['valor'];
-//     $ano = $_POST['data'];
-//     $mes = $_POST['data'];
-//     $tipo = $_POST['tipo'];
-//     $descricao = $_POST['categoria'];
+if (isset($_POST['criar_despesa'])){
+    $data = trim($_POST['data']);
+    $tipo = trim($_POST['tipo']);
+    $descricao = trim($_POST['categoria']);
+    $valor = trim($_POST['valor']);
 
-//     $getMes = getMes($mes,$ano);
-//     if (count($getMes)>0)
-//     {
-//         $idMes = $getMes['idMes'];
-//         $sqlAno = "INSERT INTO despesas (valor,descricao,idMes,tipo) VALUES ('$valor','$descricao','$idMes','$ano')";
-//         mysqli_query($conn,$sqlAno);
-//     }
-//     else
-//     {
-//         $sqlMes = "INSERT INTO meses (mes,ano) VALUES ($mes,$ano)";
-//         mysqli_query($conn,$sqlMes);
+    $sql = "INSERT INTO despesas (data_hora,tipo,descricao,valor) values ('$data','$tipo','$descricao','$valor')";
 
-//     }
-//     header('Location: ../index.php');
-//     exit();
-// }
+    mysqli_query($conn,$sql);
+}
 
 
 
