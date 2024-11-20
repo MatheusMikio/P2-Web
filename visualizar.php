@@ -1,6 +1,5 @@
 <?php
-session_start();
-require_once('back/funcoes.php');
+require_once('./back/funcoes.php');
 $meses = getMeses();
 ?>
 <!DOCTYPE html>
@@ -49,7 +48,7 @@ $meses = getMeses();
             </select></h3>
             <?php foreach ($meses as $mes):?>
                 <div class="card-wrapper-m">
-                    <a href="mes.php">
+                    <a href="mes.php?idMes=<?=$mes['idmes']?>">
                         <div class="mes-card">
                             <div class="card-header">
                                 <div class="amount">

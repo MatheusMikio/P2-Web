@@ -1,5 +1,4 @@
 <?php
-session_start();
 require_once('back/conexao.php');
 require_once('back/funcoes.php');
 $meses = getMeses();
@@ -57,7 +56,7 @@ $meses = getMeses();
                             <span class="title">
                                 Entrada Total:
                             </span>
-                            <span class="amount-value"><?=number_format(getValor(1),2,',','.') ?? 0 ?></span>
+                            <span class="amount-value"><?="R$" . numfmt(getValor(1)) ?? 0 ?></span>
                         </div>
                         <i class="bi bi-caret-up-fill icon-g"></i>
                     </div>
@@ -68,7 +67,7 @@ $meses = getMeses();
                             <span class="title">
                                 Saida Total:
                             </span>
-                            <span class="amount-value"><?=number_format(getValor(0),2,',','.') ?? 0 ?></span>
+                            <span class="amount-value"><?="R$" . numfmt(getValor(0)) ?? 0 ?></span>
                         </div>
                         <i class="bi bi-caret-down-fill icon-r"></i>
                     </div>
@@ -79,7 +78,7 @@ $meses = getMeses();
                             <span class="title">
                                 Restante:
                             </span>
-                            <span class="amount-value"><?=number_format(getValor(1)- getValor(0),2,',','.') ?? 0 ?></span>
+                            <span class="amount-value"><?="R$" . numfmt(getValor(1)- getValor(0)) ?? 0 ?></span>
                         </div>
                         <i class="bi bi-currency-dollar icon-b"></i>
                     </div>
@@ -102,9 +101,9 @@ $meses = getMeses();
                     <tbody class="grid text-center">
                         <td><?=$mes['mes']?></td>
                     
-                        <td><?=number_format(getValorMes($mes['idmes'],1),2,',','.')?></td>
-                        <td><?=number_format(getValorMes($mes['idmes'],0),2,',','.')?></td>
-                        <td><?=number_format(getValorMes($mes['idmes'],1)-getValorMes($mes['idmes'],0),2,',','.')?></td>
+                        <td><?="R$" . numfmt(getValorMes($mes['idmes'],1),2,',','.')?></td>
+                        <td><?="R$" . numfmt(getValorMes($mes['idmes'],0),2,',','.')?></td>
+                        <td><?="R$" . numfmt(getValorMes($mes['idmes'],1)-getValorMes($mes['idmes'],0))?></td>
                     </tbody>
                     <?php endforeach;?>
                     <tfoot class="text-end">

@@ -1,3 +1,16 @@
+<?php 
+require_once './back/conexao.php';
+require_once './back/funcoes.php';
+$mes = [];
+$sql = "SELECT * from meses";
+$query = mysqli_query($conn,$sql);
+if (mysqli_num_rows($query)>0)
+{
+    $mes = mysqli_fetch_array($query);
+}
+$sql = "SELECT * FROM despesas";
+$despesas = mysqli_query($conn,$sql);
+?>
 <!DOCTYPE html>
 <html lang="pt=-br">
 <head>
@@ -10,6 +23,7 @@
 </head>
 
 <body>
+
     <div class="sidebar">
         <div class="logo"></div>
         <ul class="menu">
@@ -39,23 +53,35 @@
             </div>
         </div>
         <div class="table-wrapper">
-            <h3 class="main-title">Mes de {DALE}</h3>
+            <h3 class="main-title">Mes de <?= ucfirst($mes['mes'])?></h3>
             <div class="table-container">
                 <table>
+
                     <thead>
                         <tr class="grid text-center">
                             <th>Data</th>
                             <th>Tipo</th>
                             <th>Categoria</th>
                             <th>Valor</th>
+                            <th>Alterações</th>
                         </tr>
                     </thead>
+                    <?php foreach ($despesas as $despesa): ?>
                     <tbody class="grid text-center">
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td><?=date('d/m/Y H:i:s', strtotime($despesa['data_hora']))?></td>
+                        <td><?=getTipo($despesa['tipo'])?></td>
+                        <td><?=$despesa['descricao']?></td>
+                        <td><?=numfmt($despesa['valor'])?></td>
+                        <td>
+                        <form action="./back/funcoes.php" method="post">
+                            <a href="editar.php?idDespesas=<?=$despesa['idDespesas']?>" class="btn btn-warning m-1"><i class="bi bi-pencil-square"></i></a>
+                            <!-- Tem que testar essa porra -->
+                            <button onclick="return confirm('Excluir Despesa?')" name="deletar_despesa" type="submit" value="<?=$despesa['idDespesas']?>" class="btn btn-danger"><i class="bi bi-calendar-x"></i></button>
+                            </form>
+                        </td>
                     </tbody>
+                    <?php endforeach;?> 
+
                     <tfoot class="text-end">
                         <td colspan="7">Total R$</td>
                     </tfoot>
