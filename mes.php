@@ -1,15 +1,16 @@
 <?php 
 require_once './back/conexao.php';
 require_once './back/funcoes.php';
-$mes = [];
-$sql = "SELECT * from meses";
-$query = mysqli_query($conn,$sql);
-if (mysqli_num_rows($query)>0)
+if (isset($_GET['idMes']))
 {
-    $mes = mysqli_fetch_array($query);
+    $valorEntrada = getValorMes($_GET['idMes'],1);
+    $valorSaida = getValorMes($_GET['idMes'],0);
+    $total = $valorEntrada - $valorSaida;
+    $idMes = $_GET['idMes'];
+    $mes = getMes($idMes);
+    $despesas = getDespesa($idMes);
 }
-$sql = "SELECT * FROM despesas";
-$despesas = mysqli_query($conn,$sql);
+
 ?>
 <!DOCTYPE html>
 <html lang="pt=-br">
@@ -83,7 +84,7 @@ $despesas = mysqli_query($conn,$sql);
                     <?php endforeach;?> 
 
                     <tfoot class="text-end">
-                        <td colspan="7">Total R$</td>
+                        <td colspan="7">Total R$ <?=$total?></td>
                     </tfoot>
                 </table>
             </div>
