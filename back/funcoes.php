@@ -58,7 +58,7 @@ function selectMesOrInsert($mes,$ano)
             }
             else
             {
-                return "N foi encontrado o mes";
+                return "Não foi encontrado o mes";
             }
         }
     }
@@ -135,7 +135,7 @@ if (isset($_POST['editar_despesa'])){
         $_SESSION['message'] = "A despesa não pode ser editada!";
         $_SESSION['type'] = 'error';
     }
-
+    
     header('Location: ../mes.php');
     exit();
 }

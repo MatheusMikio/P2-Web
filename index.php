@@ -107,7 +107,7 @@ $meses = getMeses();
                     </tbody>
                     <?php endforeach;?>
                     <tfoot class="text-end">
-                        <td colspan="7">R$ <?=getValor(1) - getValor(0)?></td>
+                        <td colspan="7">Total: R$ <?=numfmt(getValor(1) - getValor(0))?></td>
                     </tfoot>
                 </table>
             </div>
