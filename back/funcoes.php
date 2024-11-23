@@ -10,7 +10,42 @@ function getTipo($tipo){
         return "Saida";
     }
     return "Entrada";
-    
+}
+
+function mes($mes){
+    switch ($mes) {
+        case '01':
+            return "Janeiro";
+            break;
+        case '02':
+            return "Fevereiro";
+        case '03':
+            return "Março";
+        case '04':
+            return "Abril";
+        case '05':
+            return "Maio";
+        case '06':
+            return "Junho";
+        case '07':
+            return "Julho";
+            break;
+        case '08':
+            return "Agosto";
+            break;
+        case '09':
+            return "Setembro";
+            break;
+        case '10':
+            return "Outubro";
+            break;
+        case '11':
+            return "Novembro";
+            break;
+        case '12':
+            return "Dezembro";
+            break;
+        }
 }
 function getValorMes($idmes,$tipo)
 {
@@ -85,14 +120,24 @@ function getDespesa($idMes)
 function getMeses()
 {
     include('conexao.php');  
-    $sqlsoMes = "SELECT idmes,mes from meses";
+    $sqlsoMes = "SELECT idmes,mes from meses ORDER BY 'mes'";
     return $querysoMes = mysqli_query($conn,$sqlsoMes);
+}
+
+function idMesDespesa($idDespesas){
+    include 'conexao.php';
+    $selectIdMes = "SELECT idMes from despesas where idDespesas = '$idDespesas'";
+    $queryIdMes = mysqli_query($conn,$selectIdMes);
+    if (mysqli_num_rows($queryIdMes)>0){
+        $idMes = mysqli_fetch_array($queryIdMes);
+        return $idMes['idMes'];
+    }
 }
 
 if (isset($_POST['criar_despesa'])){
     #var_dump($_POST['data']);
     $ano = date('Y',strtotime($_POST['data']));
-    $mes = date('M',strtotime($_POST['data']));
+    $mes = date('m',strtotime($_POST['data']));
     $data = trim($_POST['data']);
     $tipo = trim($_POST['tipo']);
     $descricao = trim($_POST['categoria']);
@@ -126,6 +171,7 @@ if (isset($_POST['editar_despesa'])){
 
     $sql = "UPDATE despesas set data_hora = '{$data}', tipo = '{$tipo}', descricao = '{$categoria}', valor = '{$valor}' WHERE idDespesas = '{$idDespesas}'";
     mysqli_query($conn,$sql);
+    $idMes = idMesDespesa($idDespesas);
 
     if (mysqli_affected_rows($conn) >= 0){
         $_SESSION['message'] = "Despesa atualizada!";
@@ -136,15 +182,15 @@ if (isset($_POST['editar_despesa'])){
         $_SESSION['type'] = 'error';
     }
     
-    header('Location: ../mes.php');
+    header('Location: ../mes.php?idMes='.$idMes);
     exit();
 }
 
-//TEM QUE TESTAR ESSA MERDA
+
 if (isset($_POST['deletar_despesa'])){
     $idDespesa = mysqli_real_escape_string($conn,$_POST['deletar_despesa']);
     $sql = "DELETE FROM despesas WHERE idDespesas = '{$idDespesa}'";
-
+    $idMes = idMesDespesa($idDespesas);
     mysqli_query($conn,$sql);
 
     if (mysqli_affected_rows($conn) >= 0){
@@ -156,7 +202,7 @@ if (isset($_POST['deletar_despesa'])){
         $_SESSION['type'] = 'error';
     }
     
-    header('Location: ../mes.php');
+    header('Location: ../mes.php?idMes='.$idMes);
     exit();
 }
 ?>

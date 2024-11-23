@@ -3,7 +3,6 @@ require_once('back/conexao.php');
 require_once('back/funcoes.php');
 $meses = getMeses();
 
-//precisa criar o banco para rodar agr felicidades !!
 ?>
 
 <!DOCTYPE html>
@@ -42,10 +41,7 @@ $meses = getMeses();
                 <span>Dashboard</span>
                 <h2>Sistema de Controle de Finanças</h2>
             </div>
-            <div class="search">
-                <i class="bi bi-search"></i>
-                <input type="text" placeholder="Pesquisar">
-            </div>
+
         </div>
         <div class="card-container">
             <h3 class="main-title">Total do ano</h3>
@@ -99,7 +95,7 @@ $meses = getMeses();
                     </thead>
                     <?php foreach ($meses as $mes):?>
                     <tbody class="grid text-center">
-                        <td><?=$mes['mes']?></td>
+                        <td><?=mes($mes['mes'])?></td>
                     
                         <td><?="R$" . numfmt(getValorMes($mes['idmes'],1),2,',','.')?></td>
                         <td><?="R$" . numfmt(getValorMes($mes['idmes'],0),2,',','.')?></td>

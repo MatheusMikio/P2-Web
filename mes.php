@@ -55,7 +55,7 @@ if (isset($_GET['idMes']))
         </div>
         <?php include ('notificacao.php')?>
         <div class="table-wrapper">
-            <h3 class="main-title">Mes de <?= ucfirst($mes['mes'])?></h3>
+            <h3 class="main-title">Mes de <?= ucfirst(mes($mes['mes']))?></h3>
             <div class="table-container">
                 <table>
                     <thead>
@@ -76,7 +76,6 @@ if (isset($_GET['idMes']))
                         <td>
                         <form action="./back/funcoes.php" method="post">
                             <a href="editar.php?idDespesas=<?=$despesa['idDespesas']?>" class="btn btn-warning m-1"><i class="bi bi-pencil-square"></i></a>
-                            <!-- Tem que testar essa porra -->
                             <button onclick="return confirm('Excluir Despesa?')" name="deletar_despesa" type="submit" value="<?=$despesa['idDespesas']?>" class="btn btn-danger"><i class="bi bi-calendar-x"></i></button>
                             </form>
                         </td>

@@ -52,7 +52,7 @@ $meses = getMeses();
                         <div class="mes-card">
                             <div class="card-header">
                                 <div class="amount">
-                                    <span class="mes"><?=$mes['mes']?></span>
+                                    <span class="mes"><?=mes($mes['mes'])?></span>
                                 </div>
                             </div>
                         </div>

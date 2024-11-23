@@ -72,8 +72,8 @@ if (mysqli_num_rows($query) > 0){
                     <div class="mb-3" >
                         <label for="tipo">Tipo</label>
                         <select name="tipo" id="tipo" class="form-control" >
-                            <option value="0">Entrada</option>
-                            <option value="1">Saida</option>
+                            <option value="1">Entrada</option>
+                            <option value="0">Saida</option>
                         </select>
                     </div>
                     <div class="mb-3">
