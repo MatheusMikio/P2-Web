@@ -2,11 +2,9 @@
 require_once('back/conexao.php');
 require_once('back/funcoes.php');
 $meses = getMeses();
-
 ?>
 
 <!DOCTYPE html>
-
 <html lang="pt=-br">
 <head>
     <meta charset="UTF-8">

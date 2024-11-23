@@ -83,7 +83,7 @@ if (isset($_GET['idMes']))
                     <?php endforeach;?> 
 
                     <tfoot class="text-end">
-                        <td colspan="7">Total R$ <?=$total?></td>
+                        <td colspan="7">Total: R$ <?=$total?></td>
                     </tfoot>
                 </table>
             </div>
