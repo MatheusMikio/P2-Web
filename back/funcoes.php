@@ -4,6 +4,12 @@ require_once 'conexao.php';
 
 function numfmt($num){
     return number_format($num,2,",",".");
+
+
+    // Não funciona no xampp normal tem que configurar // Roda em server normal
+    // $padrao = numfmt_create("pt_BR", NumberFormatter::CURRENCY);
+    // return numfmt_format_currency($padrao,$num,"BRL");
+    
 }
 function getTipo($tipo){
     if ($tipo == 0){

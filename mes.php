@@ -64,6 +64,7 @@ if (isset($_GET['idMes']))
                             <th>Tipo</th>
                             <th>Categoria</th>
                             <th>Valor</th>
+                            <th></th>
                             <th>Alterações</th>
                         </tr>
                     </thead>
@@ -73,6 +74,7 @@ if (isset($_GET['idMes']))
                         <td><?=getTipo($despesa['tipo'])?></td>
                         <td><?=$despesa['descricao']?></td>
                         <td><?=numfmt($despesa['valor'])?></td>
+                        <td></td>
                         <td>
                         <form action="./back/funcoes.php" method="post">
                             <a href="editar.php?idDespesas=<?=$despesa['idDespesas']?>" class="btn btn-warning m-1"><i class="bi bi-pencil-square"></i></a>
@@ -87,7 +89,7 @@ if (isset($_GET['idMes']))
                             <td class="text">Total Entrada: R$ <?=$valorEntrada ?? 0?></td>
                             <td></td>
                             <td class="text-center">Total Saida: R$ <?=$valorSaida ?? 0?></td>
-                            <td colspan="7"class="text-end">Total: R$ <?=$total ?? 0 ?></td>
+                            <td colspan="7"class="text-end">Restante: R$ <?=$total ?? 0 ?></td>
                         </tr>
                     </tfoot>
                 </table>
