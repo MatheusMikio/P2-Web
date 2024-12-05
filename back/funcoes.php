@@ -2,6 +2,7 @@
 session_start();
 require_once 'conexao.php';
 
+
 function numfmt($num){
     return number_format($num,2,",",".");
 
@@ -50,6 +51,9 @@ function mes($mes){
             break;
         case '12':
             return "Dezembro";
+            break;
+        default:
+            return "";
             break;
         }
 }
@@ -121,6 +125,7 @@ function getDespesa($idMes)
     include('conexao.php');
     $sqlDespesa = "SELECT * FROM despesas where idmes = $idMes";
     return mysqli_query($conn,$sqlDespesa);
+    
 }
 
 function getMeses()
@@ -134,10 +139,8 @@ function idMesDespesa($idDespesas){
     include 'conexao.php';
     $selectIdMes = "SELECT idMes from despesas where idDespesas = '$idDespesas'";
     $queryIdMes = mysqli_query($conn,$selectIdMes);
-    if (mysqli_num_rows($queryIdMes)>0){
-        $idMes = mysqli_fetch_array($queryIdMes);
-        return $idMes['idMes'];
-    }
+    $idMes = mysqli_fetch_array($queryIdMes);
+    return $idMes['idMes'];
 }
 
 if (isset($_POST['criar_despesa'])){
@@ -195,10 +198,11 @@ if (isset($_POST['editar_despesa'])){
 
 if (isset($_POST['deletar_despesa'])){
     $idDespesa = mysqli_real_escape_string($conn,$_POST['deletar_despesa']);
+    $idMes = $_POST['idMes'];
     $sql = "DELETE FROM despesas WHERE idDespesas = '{$idDespesa}'";
-    $idMes = idMesDespesa($idDespesas);
+    var_dump($idMes);
     mysqli_query($conn,$sql);
-
+    
     if (mysqli_affected_rows($conn) >= 0){
         $_SESSION['message'] = "Despesa excluida!";
         $_SESSION['type'] = 'success';

@@ -1,7 +1,8 @@
 <?php 
 require_once './back/conexao.php';
 require_once './back/funcoes.php';
-if (isset($_GET['idMes']))
+
+if (isset($_GET['idMes']) && $_GET['idMes'] != '' )
 {
     $valorEntrada = getValorMes($_GET['idMes'],1);
     $valorSaida = getValorMes($_GET['idMes'],0);
@@ -10,7 +11,7 @@ if (isset($_GET['idMes']))
     $mes = getMes($idMes);
     $despesas = getDespesa($idMes);
 }
-
+$ValidarDespesa = mysqli_fetch_array($despesas);
 ?>
 <!DOCTYPE html>
 <html lang="pt=-br">
@@ -57,42 +58,45 @@ if (isset($_GET['idMes']))
         <div class="table-wrapper">
             <h3 class="main-title">Mes de <?= ucfirst(mes($mes['mes']))?></h3>
             <div class="table-container">
-                <table>
-                    <thead>
-                        <tr class="grid text-center">
-                            <th>Data</th>
-                            <th>Tipo</th>
-                            <th>Categoria</th>
-                            <th>Valor</th>
-                            <th></th>
-                            <th>Alterações</th>
-                        </tr>
-                    </thead>
-                    <?php foreach ($despesas as $despesa): ?>
-                    <tbody class="grid text-center">
-                        <td><?=date('d/m/Y H:i:s', strtotime($despesa['data_hora']))?></td>
-                        <td><?=getTipo($despesa['tipo'])?></td>
-                        <td><?=$despesa['descricao']?></td>
-                        <td><?=numfmt($despesa['valor'])?></td>
-                        <td></td>
-                        <td>
-                        <form action="./back/funcoes.php" method="post">
-                            <a href="editar.php?idDespesas=<?=$despesa['idDespesas']?>" class="btn btn-warning m-1"><i class="bi bi-pencil-square"></i></a>
-                            <button onclick="return confirm('Excluir Despesa?')" name="deletar_despesa" type="submit" value="<?=$despesa['idDespesas']?>" class="btn btn-danger"><i class="bi bi-calendar-x"></i></button>
-                            </form>
-                        </td>
-                    </tbody>
-                    <?php endforeach;?> 
-
-                    <tfoot >
-                        <tr>
-                            <td class="text">Total Entrada: R$ <?=$valorEntrada ?? 0?></td>
+                <?php if($ValidarDespesa != NULL) : ?>
+                    <table>
+                        <thead>
+                            <tr class="grid text-center">
+                                <th>Data</th>
+                                <th>Tipo</th>
+                                <th>Categoria</th>
+                                <th>Valor</th>
+                                <th></th>
+                                <th>Alterações</th>
+                            </tr>
+                        </thead>
+                        <?php foreach ($despesas as $despesa): ?>
+                        <tbody class="grid text-center">
+                            <td><?=date('d/m/Y H:i:s', strtotime($despesa['data_hora']))?></td>
+                            <td><?=getTipo($despesa['tipo'])?></td>
+                            <td><?=$despesa['descricao']?></td>
+                            <td><?=numfmt($despesa['valor'])?></td>
                             <td></td>
-                            <td class="text-center">Total Saida: R$ <?=$valorSaida ?? 0?></td>
-                            <td colspan="7"class="text-end">Restante: R$ <?=$total ?? 0 ?></td>
-                        </tr>
-                    </tfoot>
-                </table>
+                            <td>
+                            <form action="./back/funcoes.php" method="post">
+                                <a href="editar.php?idDespesas=<?=$despesa['idDespesas']?>" class="btn btn-warning m-1"><i class="bi bi-pencil-square"></i></a>
+                                <input type="hidden" name ="idMes" value = "<?=$_GET['idMes']?>">
+                                <button onclick="return confirm('Excluir Despesa?')" name="deletar_despesa" type="submit" value="<?=$despesa['idDespesas']?>" class="btn btn-danger"><i class="bi bi-calendar-x"></i></button>
+                                </form>
+                            </td>
+                        </tbody>
+                        <?php endforeach;?> 
+                        
+                        <tfoot >
+                            <tr>
+                                <td class="text">Total Entrada: R$ <?=$valorEntrada ?? 0?></td>
+                                <td></td>
+                                <td class="text-center">Total Saida: R$ <?=$valorSaida ?? 0?></td>
+                                <td colspan="7"class="text-end">Restante: R$ <?=$total ?? 0 ?></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                <?php endif?>
             </div>
         </div>
     </div>

@@ -39,7 +39,9 @@ $meses = getMeses();
                 <span>Dashboard</span>
                 <h2>Sistema de Controle de Finanças</h2>
             </div>
-
+            <div>
+                <a href="criar_despesa.php"name="criar_despesa" class="button-button">Criar</a>
+            </div>
         </div>
         <div class="card-container">
             <h3 class="main-title">Total do ano</h3>
